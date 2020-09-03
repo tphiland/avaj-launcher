@@ -6,8 +6,7 @@ public class Main {
     public static String writeTofile = "";
 
     public static void main(String[] args) throws MyException {
-        if (args[0] == null)
-		throw new MyException("please parse an argument");
+    try{
         ArrayList<String> scenario = new ReadFile().initialise(args[0]);
         Tower tower = new Tower();
         int simAmount = Integer.parseInt(scenario.get(0));
@@ -20,5 +19,8 @@ public class Main {
             tower.conditionsChanged();
         }
         new WriteToFile().writeToFile();
+    } catch (ArrayIndexOutOfBoundsException e) {
+	throw new MyException("Please parse an argument");
+    }
     }
 }
